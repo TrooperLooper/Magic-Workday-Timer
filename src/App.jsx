@@ -44,22 +44,20 @@ export default function App() {
       setCompletedSteps((prev) => prev + 1);
 
       // Play chime sound
-      const audio = new Audio("/chime.mp3"); // Adjust path if needed
+      const audio = new Audio("/chime.mp3");
       audio.play();
 
       // When all pills are done, increment stars and reset pills
       if (completedSteps + 1 === 8) {
-        // 8 pills in pillSvgs
         setCompletedSets((prev) => prev + 1);
         setCompletedSteps(0);
+        setStep(0); // Reset to first timer in sequence
+        setTimeLeft(TIMER_SEQUENCE[0].minutes); // Reset timer value
         // If all stars are done, stop timer permanently
         if (completedSets + 1 === 3) {
           setIsRunning(false);
         }
-        if (completedSets + 1 === 5) {
-          // 5 stars
-          setIsRunning(false);
-        }
+        // Do NOT automatically start the timer for the next set
       } else if (step < TIMER_SEQUENCE.length - 1) {
         setStep((prev) => prev + 1);
         setTimeLeft(TIMER_SEQUENCE[step + 1].minutes);
