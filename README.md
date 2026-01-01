@@ -1,20 +1,20 @@
-# ⏱️ Magic Timer
+# Magic Workday Timer
 
-A smart Pomodoro-inspired productivity timer designed to **prevent burnout by tracking a complete workday**. When all progress indicators are filled, you're done—no endless hyperfocus spirals. Designed and developed by Lars Munck, © 2025.
+A smart Pomodoro-inspired productivity timer designed to **prevent burnout by tracking a complete workday**. Classic pomodoro timers focus on short work/break cycles, but often miss the bigger picture of a full workday. This app tells you when you're done— no endless hyperfocus spirals. Designed and developed by Lars Munck, as part of fullstack studies at Sundsgården Folhögskola© 2025.
 
 ---
 
-## 🎯 Problem It Solves
+## What the app can help with
 
-People with ADHD and hyperfocus tendencies often work without breaks, leading to burnout and fatigue. Magic Timer solves this by:
+People with ADHD and hyperfocus tendencies often work without breaks, leading to burnout and fatigue. Magic Workday Timer solves this by:
 
 - Creating a **structured, visible workday boundary** (~7 hours)
-- Encouraging manageable worksprints and regular breaks to maintain focus and energy
-- Rewards a star and long break for each ~ 2 hour set completed
+- Ensuring manageable worksprints and mandatory breaks to maintain focus and energy
+- Rewards a star and a longer break for each ~ 2 hour set completed
 - Giving clear feedback when the workday is complete
 - Preventing the "just one more task" trap with a concrete endpoint
 
-## ✨ Features
+## Features
 
 - **Circular minute countdown:** Each minute appears as a dot in a circle. Dots light up/expire as time progresses, with direction changing based on timer type.
 - **Central timer button:** Large, tactile button showing remaining minutes. Click to start work/break cycles. It displays "work" as red and "break" as green.
@@ -22,19 +22,31 @@ People with ADHD and hyperfocus tendencies often work without breaks, leading to
 - **Progress pills:** 8 visual pills represent each timer block (25/5/25/5/25/5/25/20 min). Pills fill as you complete cycles.
 - **Fully responsive design:** Optimized for desktop (400×400px), tablets (320×320px), and mobile phones (280×280px). All UI elements scale gracefully across screen sizes.
 
-
-![Magic Timer Demo](screenshot1.png)
+![Magic Workday Timer Demo](screenshot1.png)
 _Main timer interface with minute countdown dots and progress pills_
 
-![Magic Timer Completed](screenshot2.png)
+![Magic Workday Timer Completed](screenshot2.png)
 _Completed workday with all stars filled_
 
 ---
 
-## Screenshots
+#### Accessibility & Keyboard Navigation
 
-![Magic Timer Screenshot](screenshot1.png)
-![Magic Timer Screenshot](screenshot2.png)
+Magic Workday Timer is built with accessibility in mind:
+
+- **ARIA Labels:** All interactive elements include descriptive ARIA labels for screen readers
+  - Button states: "Start work session" or "Start break session"
+  - Timer running state: "Timer running. Work session in progress."
+  - Progress indicators: "Timer steps progress: X of 8 completed"
+  - Star indicators: "Workday progress: X of 3 sets completed"
+- **Semantic HTML:** Proper use of `<button>`, `<role="progressbar">` and other semantic elements
+- **Keyboard Shortcuts:**
+
+  - **Space Key:** Start/pause the timer (works when timer is not running)
+  - Full keyboard navigation support for all interactive elements
+
+  It could be further improved with contrasting colors and focus indicators.
+  But for now, I have chosen a discreet design, that dont attract too much attention.
 
 ---
 
@@ -64,8 +76,8 @@ _Completed workday with all stars filled_
 ## Usage
 
 - Click the central button to start the timer.
-- The minute dots count down, as you work or take a break.
-- Complete cycles to light up pills and stars as you progress.
+- The minute dots count down, as you work (25 minutes) or take a break (5 or 20 minutes).
+- Complete cycles to light up pomodoro-pills and stars (1 star =8 pills) as you progress.
 - When all stars are lit, your workday is complete!
 
 ---
@@ -100,14 +112,12 @@ Run unit tests with:
 npm test
 ```
 
-**Test Suite Status:** ✅ **40 tests passing** (28 passing + 12 skipped TDD-style tests)
-- 2 test suites: utility functions + timer hook tests  
-- Jest + React Testing Library configured
-- Tests written in TDD style (expected behavior documented before implementation)
+**TDD Tests:** ✅ 40 passing / 0 failing
 
-Tests cover:
+TDD tests cover:
+
 - Timer countdown logic and state transitions
-- Work/break cycle progression  
+- Work/break cycle progression
 - Star and pill advancement
 - Session locking when workday completes
 - Utility function validation (7 helper functions tested)
@@ -116,7 +126,7 @@ Tests cover:
 
 ### Learning Outcomes
 
-Building Magic Timer taught me:
+Building Magic Timer gave me valuable experience with:
 
 - Advanced React state management with Hooks (`useState`, `useEffect`, `useRef`)
 - SVG manipulation and dynamic rendering
@@ -133,62 +143,26 @@ All rights reserved © 2025 Lars Munck
 
 ---
 
-## Credits
-
-- **Design & Development:** Lars Munck
-- **SVG & Custom Assets:** Created by Lars Munck
-- **Audio:** Chime sound from Universfield @ [Pixabay](https://pixabay.com)
-- **Built with:** React, Vite, and JavaScript
-
----
-
 ## Ideas for Further Improvement
 
-### ✅ Completed
-
-- ✅ Extract constants and magic numbers to `constants.ts`
-- ✅ Refactor timer logic into custom `usePomodoro` hook
-- ✅ Add error handling for missing audio/image files
-- ✅ Move inline CSS to external stylesheet
-- ✅ Set up Jest testing suite (40 tests passing)
-- ✅ Full TypeScript conversion with type safety
-- ✅ Optimize useEffect dependencies
-- ✅ Responsive design for mobile/tablet/desktop
-- ✅ Prevent button clicks while timer is running
-
-### 🎯 Next Priority
-
-- **Accessibility improvements** – Add ARIA labels, keyboard navigation (Space to start/stop, Esc to reset)
-- **Settings panel** – User-configurable workday length and localStorage persistence
-- **Animations** – Micro-interactions using [motion.dev](https://motion.dev) library
-- **Keyboard shortcuts** – Full keyboard control
-- **Dark mode** – Toggle light/dark theme
-
-### Feature Requests & Future Enhancements
-
 #### Settings Panel
+
 - User-configurable workday length (choose how many "stars"/sets per day)
 - Options: 1 set (~2 hours), 2 sets (~4 hours), 3 sets (~7 hours), 4 sets (~8 hours)
 - Save preferences to localStorage
 
 #### Flexible Star System
+
 - **Partial workdays:** Add half-star SVG support for incomplete sets
   - Example: 3.5 sets = 7 hours 30 minutes workday
   - Visual indicator shows progress toward next full set
 - **Pills adjustment:** Automatically recalculate pill displays based on user's chosen workday length
 
-#### Animations
-- **Micro-interactions:** Button pulse/glow on timer completion using [motion.dev](https://motion.dev/docs/quick-start)
-- **Pill bounces:** New completed pill bounces into view (satisfying feedback)
-- **Star sparkle:** Stars twinkle when a full set completes
-- **Celebratory animations:** Special animation when entire workday is complete
-
 #### Additional Features
 
-- Dark mode toggle
 - Persistent progress tracking (localStorage)
+- graphs of daily/weekly productivity
 - Export daily stats / workout summary
-- Keyboard shortcuts (Space to start, Esc to reset)
 - Create React Native mobile app version
 
 ---
