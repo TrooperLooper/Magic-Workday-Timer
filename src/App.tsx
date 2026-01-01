@@ -20,24 +20,26 @@ export default function App(): React.ReactElement {
   } = usePomodoro();
 
   return (
-    <div>
-      <div className="timer-container">
-        <MinutesCircle
-          totalSeconds={currentTimer.minutes}
-          secondsLeft={timeLeft}
-          isRunning={isRunning}
-          timerType={getTimerType(currentTimer.minutes)}
-        />
-        <BigButtonDot
-          color={currentTimer.color}
-          isRunning={isRunning}
-          onClick={handleButtonClick}
-        >
-          <CountdownNumber value={timeLeft} />
-        </BigButtonDot>
+    <div className="app-wrapper">
+      <div className="timer-wrapper">
+        <div className="timer-container">
+          <MinutesCircle
+            totalSeconds={currentTimer.minutes}
+            secondsLeft={timeLeft}
+            isRunning={isRunning}
+            timerType={getTimerType(currentTimer.minutes)}
+          />
+          <BigButtonDot
+            color={currentTimer.color}
+            isRunning={isRunning}
+            onClick={handleButtonClick}
+          >
+            <CountdownNumber value={timeLeft} />
+          </BigButtonDot>
+        </div>
+        <PillRow completedSteps={completedSteps} />
+        <StarsRow completedSets={completedSets} />
       </div>
-      <PillRow completedSteps={completedSteps} />
-      <StarsRow completedSets={completedSets} />
     </div>
   );
 }
