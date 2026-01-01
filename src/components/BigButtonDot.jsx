@@ -1,4 +1,6 @@
 import React from "react";
+import { BUTTON_CONFIG, IMAGE_PATHS } from "../constants";
+import { handleImageError } from "../imageErrorHandler";
 
 export default function BigButtonDot({
   color = "red",
@@ -7,25 +9,18 @@ export default function BigButtonDot({
   children,
 }) {
   const buttonImg =
-    color === "red" ? "/images/button_work.svg" : "/images/button_break.svg"; // Use your green SVG for break
+    color === "red" ? IMAGE_PATHS.buttons.work : IMAGE_PATHS.buttons.break;
 
   return (
     <div
       className={`center-button${isRunning ? " pulse" : ""}`}
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: 2,
-        cursor: "pointer",
-      }}
       onClick={onClick}
     >
       <img
         src={buttonImg}
         alt="A big button that activates the timer"
-        style={{ width: 140, height: 140 }}
+        onError={handleImageError}
+        style={{ width: BUTTON_CONFIG.WIDTH, height: BUTTON_CONFIG.HEIGHT }}
       />
       {children}
     </div>

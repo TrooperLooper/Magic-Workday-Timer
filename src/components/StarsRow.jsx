@@ -1,24 +1,19 @@
 import React from "react";
+import { MAX_SETS, IMAGE_PATHS } from "../constants";
+import { handleImageError } from "../imageErrorHandler";
 
 export default function StarsRow({ completedSets }) {
   return (
-    <div
-      className="stars-row"
-      style={{
-        display: "flex",
-        gap: 3,
-        justifyContent: "center",
-        marginTop: 0,
-      }}
-    >
-      {[...Array(3)].map((_, i) => (
+    <div className="stars-row">
+      {[...Array(MAX_SETS)].map((_, i) => (
         <img
           key={i}
           src={
             i < completedSets
-              ? "/images/star_done.svg"
-              : "/images/star_next.svg"
+              ? IMAGE_PATHS.stars.done
+              : IMAGE_PATHS.stars.next
           }
+          onError={handleImageError}
           alt={`Star ${i + 1}`}
           style={{ width: 35, height: 35 }}
         />

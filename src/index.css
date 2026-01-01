@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Tilt+Warp:wght@400&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -100,8 +102,7 @@ body {
   transform: translate(-50%, -50%);
   color: #fff;
   font-size: 85px;
-  font-family: "Arial", Arial, sans-serif;
-  font-weight: bold;
+  font-family: "Tilt Warp", sans-serif;
   pointer-events: none;
   z-index: 3;
 }

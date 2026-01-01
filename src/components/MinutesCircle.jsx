@@ -1,4 +1,6 @@
 import React from "react";
+import { CIRCLE_CONFIG, TIMER_TYPES, IMAGE_PATHS } from "../constants";
+import { handleImageError } from "../imageErrorHandler";
 
 export default function MinutesCircle({
   totalSeconds,
@@ -6,22 +8,22 @@ export default function MinutesCircle({
   isRunning,
   timerType,
 }) {
-  const numDots = 25;
-  const radius = 100;
-  const center = 200;
-  const rotationOffset = -Math.PI / 2; // Rotate so top dot is at index 0
+  const numDots = CIRCLE_CONFIG.NUM_DOTS;
+  const radius = CIRCLE_CONFIG.RADIUS;
+  const center = CIRCLE_CONFIG.CENTER;
+  const rotationOffset = CIRCLE_CONFIG.ROTATION_OFFSET;
 
   // For long timer, expire from left of top dot (index 24), then 0, 1, ..., 23
   const firstDotIndex = numDots - 1; // Index just left of top dot
 
   function getLogicalIndex(i) {
-    if (timerType === "long") {
+    if (timerType === TIMER_TYPES.LONG) {
       // Left-to-right, starting at 24, ending at 0
       return (24 - i + numDots) % numDots;
-    } else if (timerType === "short") {
+    } else if (timerType === TIMER_TYPES.SHORT) {
       // Start at 4, end at 0 (indices 4,3,2,1,0)
       return (4 - i + numDots) % numDots;
-    } else if (timerType === "medium") {
+    } else if (timerType === TIMER_TYPES.MEDIUM) {
       // Start at 19, end at 0 (indices 19,18,...,0)
       return (19 - i + numDots) % numDots;
     }
@@ -29,17 +31,7 @@ export default function MinutesCircle({
   }
 
   return (
-    <div
-      className="minute-dots"
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        width: "100%",
-        height: "100%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
+    <div className="minute-dots">
       {Array.from({ length: numDots }).map((_, i) => {
         const logicalIndex = getLogicalIndex(i);
         const angle = (2 * Math.PI * logicalIndex) / numDots + rotationOffset;
@@ -51,13 +43,13 @@ export default function MinutesCircle({
         const expired = isActiveDot && i < totalSeconds - secondsLeft;
         const current = isActiveDot && i === totalSeconds - secondsLeft;
 
-        let dotSrc = "/images/minute_expired.svg";
+        let dotSrc = IMAGE_PATHS.minuteDots.expired;
         let zIndex = 1;
 
-        if (isActiveDot) dotSrc = "/images/minute_left.svg";
-        if (expired) dotSrc = "/images/minute_expired.svg";
+        if (isActiveDot) dotSrc = IMAGE_PATHS.minuteDots.left;
+        if (expired) dotSrc = IMAGE_PATHS.minuteDots.expired;
         if (current && isRunning) {
-          dotSrc = "/images/minute_current.svg";
+          dotSrc = IMAGE_PATHS.minuteDots.current;
           zIndex = 99;
         }
 
@@ -65,13 +57,15 @@ export default function MinutesCircle({
           <img
             key={i}
             src={dotSrc}
+            onError={handleImageError}
             alt="minute dot in a timer circle"
+            className="minute-dot"
             style={{
               position: "absolute",
               left: x,
               top: y,
-              width: 18,
-              height: 18,
+              width: CIRCLE_CONFIG.DOT_SIZE,
+              height: CIRCLE_CONFIG.DOT_SIZE,
               zIndex: zIndex,
               pointerEvents: "none",
             }}
@@ -82,18 +76,3 @@ export default function MinutesCircle({
   );
 }
 
-function App() {
-  const currentTimer = { minutes: 60 }; // Example timer
-  const timeLeft = 30; // Example time left
-  const isRunning = true; // Example running state
-  const timerType = "long"; // Example timer type
-
-  return (
-    <MinutesCircle
-      totalSeconds={currentTimer.minutes}
-      secondsLeft={timeLeft}
-      isRunning={isRunning}
-      timerType={timerType}
-    />
-  );
-}

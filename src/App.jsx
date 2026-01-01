@@ -4,17 +4,9 @@ import BigButtonDot from "./components/BigButtonDot";
 import CountdownNumber from "./components/CountdownNumber";
 import PillRow from "./components/PillRow";
 import StarsRow from "./components/StarsRow";
-
-const TIMER_SEQUENCE = [
-  { color: "red", minutes: 25 },
-  { color: "green", minutes: 5 },
-  { color: "red", minutes: 25 },
-  { color: "green", minutes: 5 },
-  { color: "red", minutes: 25 },
-  { color: "green", minutes: 5 },
-  { color: "red", minutes: 25 },
-  { color: "green", minutes: 20 }, // <-- medium timer, green, 20 min
-];
+import { TIMER_SEQUENCE, MAX_SETS, TIMER_INTERVAL_MS, IMAGE_PATHS } from "./constants";
+import { getTimerType, playAudio } from "./utils";
+import "./App.css";
 
 export default function App() {
   const [step, setStep] = useState(0);
@@ -24,9 +16,9 @@ export default function App() {
   const [completedSets, setCompletedSets] = useState(0);
   const intervalRef = useRef(null);
 
-  // Starta timer
+  // Start timer
   const handleButtonClick = () => {
-    if (!isRunning && completedSets < 5) {
+    if (!isRunning && completedSets < MAX_SETS) {
       setIsRunning(true);
     }
   };
@@ -36,7 +28,7 @@ export default function App() {
     if (isRunning && timeLeft > 0) {
       intervalRef.current = setInterval(() => {
         setTimeLeft((prev) => prev - 1);
-      }, 60000); // 1 minute interval
+      }, TIMER_INTERVAL_MS);
     }
     if (timeLeft === 0 && isRunning) {
       clearInterval(intervalRef.current);
@@ -44,17 +36,16 @@ export default function App() {
       setCompletedSteps((prev) => prev + 1);
 
       // Play chime sound
-      const audio = new Audio("/chime.mp3");
-      audio.play();
+      playAudio(IMAGE_PATHS.audio.chime);
 
       // When all pills are done, increment stars and reset pills
-      if (completedSteps + 1 === 8) {
+      if (completedSteps + 1 === TIMER_SEQUENCE.length) {
         setCompletedSets((prev) => prev + 1);
         setCompletedSteps(0);
         setStep(0); // Reset to first timer in sequence
         setTimeLeft(TIMER_SEQUENCE[0].minutes); // Reset timer value
         // If all stars are done, stop timer permanently
-        if (completedSets + 1 === 3) {
+        if (completedSets + 1 === MAX_SETS) {
           setIsRunning(false);
         }
         // Do NOT automatically start the timer for the next set
@@ -71,26 +62,12 @@ export default function App() {
 
   return (
     <div>
-      <div
-        className="timer-container"
-        style={{
-          position: "relative",
-          width: 400,
-          height: 400,
-          margin: "0 auto",
-        }}
-      >
+      <div className="timer-container">
         <MinutesCircle
           totalSeconds={currentTimer.minutes}
           secondsLeft={timeLeft}
           isRunning={isRunning}
-          timerType={
-            currentTimer.minutes === 25
-              ? "long"
-              : currentTimer.minutes === 5
-              ? "short"
-              : "medium"
-          }
+          timerType={getTimerType(currentTimer.minutes)}
         />
         <BigButtonDot
           color={currentTimer.color}

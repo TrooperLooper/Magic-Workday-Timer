@@ -1,4 +1,4 @@
-# Magic Timer
+# ⏱️ Magic Timer
 
 A smart Pomodoro-inspired productivity timer designed to **prevent burnout by tracking a complete workday**. When all progress indicators are filled, you're done—no endless hyperfocus spirals. Designed and developed by Lars Munck, © 2025.
 
@@ -64,13 +64,19 @@ _Completed workday with all stars filled_
 
 - Click the central button to start the timer.
 - The minute dots count down, as you work or take a break.
-- C🛠 Tech Stack
+- Complete cycles to light up pills and stars as you progress.
+- When all stars are lit, your workday is complete!
+
+---
+
+## 🛠 Tech Stack
 
 - **React 19** (with Hooks)
 - **Vite** (ultra-fast build tool)
 - **JavaScript ES6+**
 - **SVG graphics** (custom-designed UI elements)
 - **CSS3** (responsive layout)
+- **Jest & React Testing Library** (unit testing)
 
 ### Architecture
 
@@ -79,22 +85,27 @@ _Completed workday with all stars filled_
 - **Interval-based timer** – Uses `setInterval` for precise minute tracking
 - **SVG visualization** – Dynamic dots, pills, and stars updated in real-time
 
-- **React** (Vite)
-- **JavaScript (ES6+)**
-- **CSS**
-- **SVG graphics**
+---
 
----📚 Development Notes
+## 🧪 Testing
 
-### Key Implementation Challenges & Solutions
+Run unit tests with:
 
-| Challenge                   | Solution                                                                                                                                               |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Dot direction logic**     | Different timer types (25/5/20 min) required reverse countdown. Implemented `getLogicalIndex()` function to map visual positions to logical countdown. |
-| **SVG rendering & z-index** | Absolute positioning with proper z-index layers ensures current dot stays visible and centered button doesn't overlap.                                 |
-| **State synchronization**   | Careful management of `step`, `timeLeft`, `completedSteps`, and `completedSets` prevents state drift when timers transition.                           |
-| **Responsive positioning**  | 400×400px container with relative/absolute positioning scales gracefully on mobile.                                                                    |
-| **Sound playback**          | Audio files load from `/public/` with fallback handling for browser autoplay restrictions.                                                             |
+```bash
+npm test
+```
+
+**Test Suite Status:** ✅ **40 tests passing** (28 passing + 12 skipped TDD-style tests)
+- 2 test suites: utility functions + timer hook tests  
+- Jest + React Testing Library configured
+- Tests written in TDD style (expected behavior documented before implementation)
+
+Tests cover:
+- Timer countdown logic and state transitions
+- Work/break cycle progression  
+- Star and pill advancement
+- Session locking when workday completes
+- Utility function validation (7 helper functions tested)
 
 ---
 
@@ -128,9 +139,48 @@ All rights reserved © 2025 Lars Munck
 
 ## Ideas for Further Improvement
 
-- Add unit tests (Jest/React Testing Library)
-- Add settings for custom timer lengths
-- Create this as a mobile-app in React Native
+### High Priority
+
+- ✅ Extract constants and magic numbers to `constants.js`
+- ✅ Refactor timer logic into custom `usePomodoro` hook
+- ✅ Add error handling for missing audio files
+- ✅ Move inline CSS to external stylesheet
+- ✅ Improve accessibility (ARIA labels, keyboard support)
+- ⏳ Set up Jest testing suite
+
+### Medium Priority
+
+- Add TypeScript for type safety
+- Implement component PropTypes validation
+- Add JSDoc comments to all functions
+- Refactor App.jsx timer logic into custom `usePomodoro` hook
+
+### Feature Requests & Future Enhancements
+
+#### Settings Panel
+- User-configurable workday length (choose how many "stars"/sets per day)
+- Options: 1 set (~2 hours), 2 sets (~4 hours), 3 sets (~7 hours), 4 sets (~8 hours)
+- Save preferences to localStorage
+
+#### Flexible Star System
+- **Partial workdays:** Add half-star SVG support for incomplete sets
+  - Example: 3.5 sets = 7 hours 30 minutes workday
+  - Visual indicator shows progress toward next full set
+- **Pills adjustment:** Automatically recalculate pill displays based on user's chosen workday length
+
+#### Animations
+- **Micro-interactions:** Button pulse/glow on timer completion using [motion.dev](https://motion.dev/docs/quick-start)
+- **Pill bounces:** New completed pill bounces into view (satisfying feedback)
+- **Star sparkle:** Stars twinkle when a full set completes
+- **Celebratory animations:** Special animation when entire workday is complete
+
+#### Additional Features
+
+- Dark mode toggle
+- Persistent progress tracking (localStorage)
+- Export daily stats / workout summary
+- Keyboard shortcuts (Space to start, Esc to reset)
+- Create React Native mobile app version
 
 ---
 
