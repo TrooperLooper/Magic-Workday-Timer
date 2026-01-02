@@ -1,29 +1,5 @@
 /* ===== MAGIC TIMER STYLES ===== */
 
-/* App Wrapper - Centers and scales everything */
-.app-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  min-width: 100vw;
-  padding: 0;
-  background: #000;
-  position: relative;
-}
-
-/* Timer Wrapper - Scales based on viewport, tight around content */
-.timer-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  transform-origin: center;
-  transform: scale(1);
-  width: fit-content;
-  height: fit-content;
-}
-
 /* Timer Container */
 .timer-container {
   position: relative;
@@ -74,7 +50,6 @@
 .center-button:disabled {
   opacity: 0.7;
   cursor: default;
-  box-shadow: 0 0 0 4px rgba(100, 180, 255, 0.8);
 }
 
 /* Pulse animation when timer is running */
@@ -84,13 +59,30 @@
 
 @keyframes pulse {
   0% {
-    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
   }
   70% {
-    opacity: 0.8;
+    box-shadow: 0 0 0 20px rgba(76, 175, 80, 0);
   }
   100% {
-    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+/* Pulse animation when timer is running */
+.center-button.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
   }
 }
 
@@ -127,34 +119,44 @@
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 900px) {
-  .timer-wrapper {
-    transform: scale(0.9);
-  }
-}
-
-@media (max-width: 750px) {
-  .timer-wrapper {
-    transform: scale(0.8);
-  }
-}
-
 @media (max-width: 600px) {
-  .timer-wrapper {
-    transform: scale(0.7);
+  .timer-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .countdown-number {
+    font-size: 56px;
+  }
+
+  .pill-row {
+    margin-top: -10px;
+  }
+
+  .pill-row img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .stars-row img {
+    width: 28px;
+    height: 28px;
   }
 }
 
-@media (max-width: 480px) {
-  .timer-wrapper {
-    transform: scale(0.6);
+@media (max-width: 400px) {
+  .timer-container {
+    width: 280px;
+    height: 280px;
   }
-}
 
-@media (max-width: 380px) {
-  .timer-wrapper {
-    transform: scale(0.5);
+  .countdown-number {
+    font-size: 48px;
+  }
+
+  .center-button img {
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -194,44 +196,4 @@
 
 .read-the-docs {
   color: #888;
-}
-
-/* ===== FOOTER STYLES ===== */
-.app-footer {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  text-align: center;
-  z-index: 100;
-}
-
-.footer-title {
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin: 0;
-  color: #999;
-}
-
-.footer-credit {
-  font-size: 9px;
-  margin: 0;
-  color: #777;
-}
-
-.footer-link {
-  font-size: 9px;
-  color: #5ba3ff;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.footer-link:hover {
-  color: #7bb3ff;
-  text-decoration: underline;
 }
