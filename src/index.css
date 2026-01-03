@@ -47,10 +47,10 @@ body {
 
 .dot {
   position: absolute;
-  width: 15px;
-  height: 15px;
-  max-width: 15px;
-  max-height: 15px;
+  width: 18px;
+  height: 18px;
+  max-width: 18px;
+  max-height: 18px;
   /* Positioning will be handled with JS or nth-child in CSS */
 }
 
@@ -94,7 +94,7 @@ body {
 .countdown-number {
   position: absolute;
   top: 50%;
-  left: 49%;
+  left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
   font-size: 85px;
@@ -117,4 +117,115 @@ body {
 
 .center-button.pulse {
   animation: pulse 2s infinite;
+}
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .timer-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .center-button {
+    width: 80px;
+    height: 80px;
+  }
+
+  .center-button img {
+    width: 112px;
+    height: 112px;
+    max-width: 112px;
+    max-height: 112px;
+  }
+
+  .countdown-number {
+    font-size: 68px;
+  }
+
+  .dot {
+    width: 14px;
+    height: 14px;
+    max-width: 14px;
+    max-height: 14px;
+  }
+
+  .pill_long {
+    width: 28px;
+    height: 28px;
+    max-width: 28px;
+    max-height: 28px;
+  }
+
+  .pill_short {
+    width: 14px;
+    height: 14px;
+    max-width: 14px;
+    max-height: 14px;
+  }
+
+  .star {
+    width: 28px;
+    height: 28px;
+    max-width: 28px;
+    max-height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer-container {
+    width: 280px;
+    height: 280px;
+  }
+
+  .center-button {
+    width: 70px;
+    height: 70px;
+  }
+
+  .center-button img {
+    width: 98px;
+    height: 98px;
+    max-width: 98px;
+    max-height: 98px;
+  }
+
+  .countdown-number {
+    font-size: 56px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    max-width: 12px;
+    max-height: 12px;
+  }
+
+  .pill_long {
+    width: 20px;
+    height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  .pill_short {
+    width: 10px;
+    height: 10px;
+    max-width: 10px;
+    max-height: 10px;
+  }
+
+  .star {
+    width: 20px;
+    height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  .pill-row {
+    gap: 5px;
+    margin: -30px auto 0 auto;
+  }
+
+  .stars-row {
+    gap: 10px;
+  }
 }
