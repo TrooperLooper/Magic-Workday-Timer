@@ -23,15 +23,12 @@ export function useCircleConfig(): CircleConfigValues {
 
   useEffect(() => {
     const updateConfig = () => {
-      const newConfig = getConfigForWidth(window.innerWidth);
-      console.log("Window width:", window.innerWidth, "Config:", newConfig);
-      setConfig(newConfig);
+      setConfig(getConfigForWidth(window.innerWidth));
     };
 
     window.addEventListener("resize", updateConfig);
     return () => window.removeEventListener("resize", updateConfig);
   }, []);
 
-  console.log("useCircleConfig returning:", config);
   return config;
 }
