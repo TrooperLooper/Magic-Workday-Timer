@@ -1,5 +1,24 @@
 /* ===== MAGIC TIMER STYLES ===== */
 
+/* App Wrapper - Centers content */
+.app-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+}
+
+/* Timer Wrapper - Constrains timer and its children */
+.timer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: fit-content;
+}
+
 /* Timer Container */
 .timer-container {
   position: relative;
@@ -84,48 +103,6 @@
   transform: scale(1.1);
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 600px) {
-  .timer-container {
-    width: 320px;
-    height: 320px;
-  }
-
-  .countdown-number {
-    font-size: 56px;
-  }
-
-  .pill-row {
-    margin-top: -10px;
-  }
-
-  .pill-row img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .stars-row img {
-    width: 28px;
-    height: 28px;
-  }
-}
-
-@media (max-width: 400px) {
-  .timer-container {
-    width: 280px;
-    height: 280px;
-  }
-
-  .countdown-number {
-    font-size: 48px;
-  }
-
-  .center-button img {
-    width: 100px;
-    height: 100px;
-  }
-}
-
 /* ===== LEGACY STYLES (can be removed) ===== */
 
 .logo {
@@ -162,4 +139,22 @@
 
 .read-the-docs {
   color: #888;
+}
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .timer-container {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-wrapper {
+    min-height: 100vh;
+  }
+
+  .timer-container {
+    width: 280px;
+    height: 280px;
+  }
 }

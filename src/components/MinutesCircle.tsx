@@ -2,6 +2,7 @@ import React from "react";
 import type { MinutesCircleProps } from "../types";
 import { CIRCLE_CONFIG, TIMER_TYPES, IMAGE_PATHS } from "../constants";
 import { handleImageError } from "../imageErrorHandler";
+import { useCircleConfig } from "../hooks/useCircleConfig";
 
 export default function MinutesCircle({
   totalSeconds,
@@ -10,9 +11,10 @@ export default function MinutesCircle({
   timerType,
 }: MinutesCircleProps): React.ReactElement {
   const numDots = CIRCLE_CONFIG.NUM_DOTS;
-  const radius = CIRCLE_CONFIG.RADIUS;
-  const center = CIRCLE_CONFIG.CENTER;
   const rotationOffset = CIRCLE_CONFIG.ROTATION_OFFSET;
+  
+  const { radius, center, dotSize } = useCircleConfig();
+  const dotOffset = dotSize / 2;
 
   // For long timer, expire from left of top dot (index 24), then 0, 1, ..., 23
   const firstDotIndex = numDots - 1; // Index just left of top dot
@@ -36,8 +38,8 @@ export default function MinutesCircle({
       {Array.from({ length: numDots }).map((_, i) => {
         const logicalIndex = getLogicalIndex(i);
         const angle = (2 * Math.PI * logicalIndex) / numDots + rotationOffset;
-        const x = center + radius * Math.cos(angle) - 9;
-        const y = center + radius * Math.sin(angle) - 9;
+        const x = center + radius * Math.cos(angle) - dotOffset;
+        const y = center + radius * Math.sin(angle) - dotOffset;
 
         // Only show blue for the first N dots
         const isActiveDot = i < totalSeconds;
@@ -65,8 +67,8 @@ export default function MinutesCircle({
               position: "absolute",
               left: x,
               top: y,
-              width: CIRCLE_CONFIG.DOT_SIZE,
-              height: CIRCLE_CONFIG.DOT_SIZE,
+              width: dotSize,
+              height: dotSize,
               zIndex: zIndex,
               pointerEvents: "none",
             }}

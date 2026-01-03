@@ -57,17 +57,12 @@ export default function PillRow({
         <img
           key={i}
           src={i < completedSteps ? pill.done : pill.next}
-          alt={`${i < completedSteps ? "Completed" : "Upcoming"} timer block ${i + 1}`}
+          alt={`${i < completedSteps ? "Completed" : "Upcoming"} timer block ${
+            i + 1
+          }`}
           aria-hidden="true"
           onError={handleImageError}
-          style={{
-            width: isShortBreak(i)
-              ? PILL_CONFIG.SHORT_BREAK_SIZE
-              : PILL_CONFIG.STANDARD_SIZE,
-            height: isShortBreak(i)
-              ? PILL_CONFIG.SHORT_BREAK_SIZE
-              : PILL_CONFIG.STANDARD_SIZE,
-          }}
+          className={isShortBreak(i) ? "pill_short" : "pill_long"}
         />
       ))}
     </div>

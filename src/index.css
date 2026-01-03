@@ -199,27 +199,6 @@ body {
     max-height: 12px;
   }
 
-  .pill_long {
-    width: 20px;
-    height: 20px;
-    max-width: 20px;
-    max-height: 20px;
-  }
-
-  .pill_short {
-    width: 10px;
-    height: 10px;
-    max-width: 10px;
-    max-height: 10px;
-  }
-
-  .star {
-    width: 20px;
-    height: 20px;
-    max-width: 20px;
-    max-height: 20px;
-  }
-
   .pill-row {
     gap: 2px;
     margin: -22px auto 0 auto;

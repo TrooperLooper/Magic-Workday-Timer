@@ -22,9 +22,11 @@ export default function StarsRow({
             i < completedSets ? IMAGE_PATHS.stars.done : IMAGE_PATHS.stars.next
           }
           onError={handleImageError}
-          alt={`${i < completedSets ? "Completed" : "Upcoming"} workday set ${i + 1}`}
+          alt={`${i < completedSets ? "Completed" : "Upcoming"} workday set ${
+            i + 1
+          }`}
           aria-hidden="true"
-          style={{ width: 35, height: 35 }}
+          className="star"
         />
       ))}
     </div>
