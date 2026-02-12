@@ -1,6 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Tilt+Warp:wght@400&display=swap");
 
-body {
+body, #root {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #000;
 }
 
@@ -9,6 +16,15 @@ body {
   width: 400px;
   height: 400px;
   margin: 0px auto;
+}
+
+/* Prevent scaling/stretching of timer area */
+.app-wrapper, .timer-wrapper, .timer-container, .minute-circle-svg {
+  width: 280px !important;
+  height: 280px !important;
+  max-width: 280px !important;
+  max-height: 280px !important;
+  box-sizing: border-box;
 }
 
 .minute-dots,

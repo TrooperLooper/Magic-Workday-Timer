@@ -85,10 +85,10 @@ Magic Workday Timer is built with accessibility in mind:
 ## 🛠 Tech Stack
 
 - **React 19** (with Hooks)
-- **TypeScript** (full type safety)
+- **TypeScript** (full type safety, 100% TypeScript codebase)
 - **Vite** (ultra-fast build tool)
-- **SVG graphics** (custom-designed UI elements)
-- **CSS3** (responsive layout with mobile-first design)
+- **SVG graphics** (custom-drawn UI elements with responsive viewBox)
+- **CSS3** (mobile-first responsive design with media queries)
 - **Jest & React Testing Library** (unit testing)
 
 ### Architecture

@@ -22,10 +22,12 @@ export function usePomodoro(): UsePomodoroReturn {
   const [completedSteps, setCompletedSteps] = useState<number>(0);
   const [completedSets, setCompletedSets] = useState<number>(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const timerStartTime = useRef<number | null>(null);
 
   /**
    * Start/stop button click handler
    * Only allows starting if not already running and workday isn't complete
+   * User must manually click to start each cycle (no auto-start)
    */
   const handleButtonClick = (): void => {
     if (!isRunning && completedSets < MAX_SETS) {
@@ -49,21 +51,35 @@ export function usePomodoro(): UsePomodoroReturn {
   }, [completedSets]);
 
   /**
-   * Timer countdown logic - starts/stops interval based on isRunning status
+   * Timer countdown logic - uses real system time (Date.now()) instead of counting intervals
+   * This ensures timer survives device sleep by calculating elapsed time from actual clock
    * Only depends on isRunning to avoid cascading re-renders
    */
   useEffect(() => {
     if (isRunning && timeLeft > 0) {
+      // Initialize start time when timer begins
+      if (!timerStartTime.current) {
+        const totalSeconds = TIMER_SEQUENCE[step].minutes * 60;
+        timerStartTime.current = Date.now() - (totalSeconds - timeLeft) * 1000;
+      }
+
       intervalRef.current = setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
-      }, TIMER_INTERVAL_MS);
+        const elapsed = Math.floor(
+          (Date.now() - timerStartTime.current!) / 1000
+        );
+        const totalSeconds = TIMER_SEQUENCE[step].minutes * 60;
+        const newTimeLeft = Math.max(0, totalSeconds - elapsed);
+        setTimeLeft(newTimeLeft);
+      }, 1000);
     } else {
+      // Reset start time when paused
+      timerStartTime.current = null;
       clearInterval(intervalRef.current ?? undefined);
     }
 
     // Cleanup interval on unmount
     return () => clearInterval(intervalRef.current ?? undefined);
-  }, [isRunning]);
+  }, [isRunning, step]);
 
   /**
    * Timer completion logic - triggered when timeLeft reaches 0
