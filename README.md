@@ -3,6 +3,13 @@
 A smart Pomodoro-inspired productivity timer designed to **prevent burnout by tracking a complete workday**. Classic pomodoro timers focus on short work/break cycles, but often miss the bigger picture of a full workday. This app tells you when you're done— no endless hyperfocus spirals. Designed and developed by Lars Munck, as part of fullstack studies at Sundsgården Folhögskola© 2025.
 
 ---
+<img src="screenshot1.png" alt="Magic Workday Timer Demo" style="max-height:500px;"><br>
+<em>Main timer interface with minute countdown dots and progress pills</em>
+
+<img src="screenshot2.png" alt="Magic Workday Timer Completed" style="max-height:500px;"><br>
+<em>Completed workday with all stars filled</em>
+---
+
 
 ## What the app can help with
 
@@ -21,12 +28,6 @@ People with ADHD and hyperfocus tendencies often work without breaks, leading to
 - **Star indicators:** 4 stars at the top represent completed work/break sets. 1 star = 2 hours 15 minutes. Stars fill as you complete cycles.
 - **Progress pills:** 8 visual pills represent each timer block (25/5/25/5/25/5/25/20 min). Pills fill as you complete cycles.
 - **Fully responsive design:** Optimized for desktop (400×400px), tablets (320×320px), and mobile phones (280×280px). All UI elements scale gracefully across screen sizes.
-
-![Magic Workday Timer Demo](screenshot1.png)
-_Main timer interface with minute countdown dots and progress pills_
-
-![Magic Workday Timer Completed](screenshot2.png)
-_Completed workday with all stars filled_
 
 ---
 
