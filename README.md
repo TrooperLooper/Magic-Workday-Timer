@@ -5,10 +5,10 @@ A custom Pomodoro-inspired productivity timer designed to **prevent burnout by t
 ---
 
 <img src="screenshot1.png" alt="Magic Workday Timer Demo" style="height:400px;"><br>
-<em>Main timer interface with minute countdown dots and progress pills</em>
+<em>Main timer interface with minute countdown dots and progress pills.</em>
 
 <img src="screenshot2.png" alt="Magic Workday Timer Completed" style="height:400px;"><br>
-<em>Completed workday with all stars filled</em>
+<em>Break cycle in progress (Green)</em>
 
 ---
 
