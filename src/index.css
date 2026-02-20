@@ -37,40 +37,6 @@ body {
   height: 18px;
   max-width: 18px;
   max-height: 18px;
-  /* Positioning will be handled with JS or nth-child in CSS */
-}
-
-.pill-row {
-  display: flex;
-  gap: 10px;
-  width: max-content;
-  margin: -30px auto 0 auto;
-  align-items: center;
-}
-
-.pill_long {
-  width: 35px;
-  height: 35px;
-  max-width: 35px;
-  max-height: 35px;
-}
-
-.pill_short {
-  width: 18px;
-  height: 18px;
-  max-width: 18px;
-  max-height: 18px;
-}
-
-.stars-row {
-  display: flex;
-  gap: 15px;
-  width: max-content;
-  margin: 10px auto;
-  align-items: center;
-}
-
-.star {
 }
 
 .pill_long {
@@ -131,5 +97,6 @@ body {
   .timer-container {
     transform: scale(2);
     transform-origin: center;
+    margin: 0 auto;
   }
 }
