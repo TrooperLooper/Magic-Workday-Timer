@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Tilt+Warp:wght@400&display=swap");
 
 body {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -15,26 +15,17 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.timer-container {
-  position: relative;
-  width: 400px;
-  height: 400px;
-  margin: 0px auto;
-}
-
 /* Prevent scaling/stretching of timer area */
-.app-wrapper,
-.timer-wrapper,
-.timer-container,
 .minute-circle-svg {
-  width: 280px !important;
-  height: 280px !important;
-  max-width: 280px !important;
-  max-height: 280px !important;
+  width: 280px;
+  height: 280px;
+  max-width: 280px;
+  max-height: 280px;
   box-sizing: border-box;
 }
 
