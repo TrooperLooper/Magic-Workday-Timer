@@ -10,7 +10,6 @@ import "./App.css";
 
 export default function App(): React.ReactElement {
   const {
-    step,
     timeLeft,
     isRunning,
     completedSteps,
