@@ -7,7 +7,13 @@
   align-items: center;
   gap: 15px;
   width: 280px;
-  margin: 0 auto;
+}
+
+/* ===== RESPONSIVE SIZING ===== */
+@media (min-width: 768px) {
+  .timer-container {
+    width: 560px;
+  }
 }
 
 /* Timer Circle - Positions the circle and button */

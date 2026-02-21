@@ -93,10 +93,4 @@ body {
   #root {
     width: 100%;
   }
-
-  .timer-container {
-    transform: scale(2);
-    transform-origin: center;
-    margin: 0 auto;
-  }
 }
