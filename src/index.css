@@ -88,6 +88,12 @@ body {
   animation: pulse 2s infinite;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .center-button.pulse {
+    animation: none !important;
+  }
+}
+
 /* ===== DESKTOP SCALING ===== */
 @media (min-width: 768px) {
   #root {

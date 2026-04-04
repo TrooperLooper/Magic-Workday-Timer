@@ -13,7 +13,6 @@ export default function MinutesCircle({
   const rotationOffset = CIRCLE_CONFIG.ROTATION_OFFSET;
 
   // Mobile-first base design
-  const SVG_SIZE = 280;
   const CENTER = 140;
   const RADIUS = 85;
   const DOT_RADIUS = 6.3;
