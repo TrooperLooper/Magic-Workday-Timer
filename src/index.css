@@ -31,14 +31,6 @@ body {
   box-sizing: border-box;
 }
 
-.dot {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  max-width: 18px;
-  max-height: 18px;
-}
-
 .pill_long {
   width: 35px;
   height: 35px;
@@ -86,6 +78,12 @@ body {
 
 .center-button.pulse {
   animation: pulse 2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .center-button.pulse {
+    animation: none !important;
+  }
 }
 
 /* ===== DESKTOP SCALING ===== */

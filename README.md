@@ -12,7 +12,6 @@ A custom Pomodoro-inspired productivity timer designed to **prevent burnout by t
 
 ---
 
-
 ## What the app can help with
 
 People with ADHD and hyperfocus tendencies often work without breaks, leading to burnout and fatigue. Magic Workday Timer solves this by:
@@ -44,9 +43,12 @@ Magic Workday Timer is built with accessibility in mind:
   - Star indicators: "Workday progress: X of 3 sets completed"
 - **Semantic HTML:** Proper use of `<button>`, `<role="progressbar">` and other semantic elements
 - **Keyboard Shortcuts:**
-
   - **Space Key:** Start/pause the timer (works when timer is not running)
   - Full keyboard navigation support for all interactive elements
+
+- **Reduced Motion Support:**
+  - Respects the user's `prefers-reduced-motion` system setting. If enabled, non-essential animations (such as the pulsing timer button) are disabled for a calmer, more accessible experience.
+  - This follows WCAG guidelines for motion sensitivity and inclusive design.
 
   It could be further improved with contrasting colors and focus indicators.
   But for now, I have chosen a discreet design, that dont attract too much attention.

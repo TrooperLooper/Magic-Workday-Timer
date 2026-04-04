@@ -1,6 +1,6 @@
 import React from "react";
 import type { PillRowProps } from "../types";
-import { TIMER_SEQUENCE, PILL_CONFIG, IMAGE_PATHS } from "../constants";
+import { TIMER_SEQUENCE, IMAGE_PATHS } from "../constants";
 import { handleImageError } from "../imageErrorHandler";
 
 const pillSvgs = [
